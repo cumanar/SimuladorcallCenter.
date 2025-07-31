@@ -36,19 +36,19 @@ public class FormularioContacto extends javax.swing.JFrame {
     private boolean estadoPanel = true; // Estado del panel
     private int selTipo = 0; // Tipo de selección (mostrar cédulas o todo)
     //Variables par el cornometro.
-    private int segundos = 0;
+   private int segundos = 0;
    private javax.swing.Timer timer;
    private javax.swing.JTextField txtTelefono;
    private javax.swing.JTextField txtNombre;
    private javax.swing.JList<String> listAtendidos;
-
     // Clases encargas de manipular las listas
     private DefaultListModel<String> lmPendientes = new DefaultListModel<>();
-    private DefaultListModel<String> lmAtendidos = new DefaultListModel<>();
+    private DefaultListModel<String> lmAtendidos;
 
 
     //Constructor de la GUI
     public FormularioContacto() {
+        this.lmAtendidos = new DefaultListModel<>();
         initComponents();// inicializa componentes 
         archivo = new Archivo();
         libreta = new Libreta();
