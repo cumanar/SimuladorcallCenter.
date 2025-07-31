@@ -31,10 +31,12 @@ public class FormularioContacto extends javax.swing.JFrame {
     private boolean estadoB = false; // Estado del botón
     private boolean estadoPanel = true; // Estado del panel
     private int selTipo = 0; // Tipo de selección (mostrar cédulas o todo)
-    //hacer
-    private Timer cronometro;
-    private int segundos = 0;
-    private Contacto contactoEnLlamada = null;
+   
+    
+//Ingresamos tres variables.Hacer 
+    private Timer cronometro;//Es un temporizador que ejecuta cada segundo, y ca contando el tiempo de la llamada.
+    private int segundos = 0;//cuenta los segundos que han pasado desde que inicio la llamada.
+    private Contacto contactoEnLlamada = null;//guarda el contacto que actualmente esta en la llamada, para depues pasarlo a atendidos.
 
     // Clases encargas de manipular las listas
     private DefaultListModel<String> lmPendientes = new DefaultListModel<>();
@@ -50,9 +52,12 @@ public class FormularioContacto extends javax.swing.JFrame {
         super.setSize(INITIAL_WEIGHT, INITIAL_HEIGHT);
         super.setTitle(TITLE);
         
+        //Se realizo:
         jButton4.setEnabled(false);  // Colgar deshabilitado inicialmente
-        btnContactar.setEnabled(true);
-        btnSiguiente.setEnabled(false);
+        btnContactar.setEnabled(true);// Habilita el botón "Contactar" para 
+        //que el usuario pueda iniciar una llamada
+        btnSiguiente.setEnabled(false);// Desactiva el botón "Siguiente" para evitar que
+        //el usuario avance mientras está en una llamada
 
     }
 
@@ -526,16 +531,13 @@ public class FormularioContacto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelLlamadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(btnContactar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelLlamadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLlamadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel9)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLlamadasLayout.createSequentialGroup()
-                        .addComponent(btnContactar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSiguiente)))
+                    .addComponent(btnSiguiente)
+                    .addComponent(jLabel9)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         panelLlamadasLayout.setVerticalGroup(
@@ -543,8 +545,8 @@ public class FormularioContacto extends javax.swing.JFrame {
             .addGroup(panelLlamadasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelLlamadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSiguiente)
-                    .addComponent(btnContactar))
+                    .addComponent(btnContactar)
+                    .addComponent(btnSiguiente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelLlamadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -653,32 +655,48 @@ public class FormularioContacto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Digite una cedula para buscar la informacion", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_bBuscarActionPerformed
-//hacer
-    
+
+  //Creamos la funcion iniciar cronometro.  
     private void iniciarCronometro() {
+     // Se crea un nuevo objeto Timer que se ejecutará cada 1 segundo).
+    // El segundo parámetro que define lo que hará el temporizador en cada "tick".
     cronometro = new Timer(1000, new ActionListener() {
+    // Este es el método que se ejecuta cada vez que pasa un segundo.
         @Override
         public void actionPerformed(ActionEvent e) {
+       
+    // Se incrementa la variable 'segundos' en 1, representando que ha pasado un segundo más.
             segundos++;
+            
+    // Se llama al método actualizarTiempo(), que probablemte se encarga de mostrar
+    // el tiempo actual en una etiqueta o interfaz gráfica.
             actualizarTiempo();
         }
     });
-    cronometro.start();
+    
+    cronometro.start(); // Se inicia el cronómetro (empieza a contar los segundos).
 }
-//hacer
+//Se crea la funcion actualizar tiempo del cronometro
 private void actualizarTiempo() {
-    int horas = segundos / 3600;
-    int minutos = (segundos % 3600) / 60;
-    int seg = segundos % 60;
+    int horas = segundos / 3600; // Se calcula la cantidad de horas dividiendo los 
+    //segundos totales entre 3600 (segundos en una hora).
+    int minutos = (segundos % 3600) / 60;// Luego se calcula cuántos 
+    //minutos quedan después de quitar las horas.
+    int seg = segundos % 60;// Finalmente, se obtienen los segundos restantes
+    //que no forman parte de horas ni minutos.
+    
+   // Se actualiza el texto de la etiqueta lblTiempo con el formato "horas:minutos:segundos"
     lblTiempo.setText(String.format("%d:%02d:%02d", horas, minutos, seg));
 }
 //hacer
 private void reiniciarCronometro() {
-    if (cronometro != null) {
+    if (cronometro != null) {  // Si el cronómetro 
+        //está en ejecución, lo detenemos.
         cronometro.stop();
     }
-    segundos = 0;
-    actualizarTiempo();
+    segundos = 0;// Se reinicia el contador de segundos a 0
+    actualizarTiempo();// Se actualiza el tiempo mostrado en
+    //la interfaz gráfica a 0:00:00.
 }
 
     
@@ -829,45 +847,51 @@ private void reiniciarCronometro() {
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     
-    //hacer                                   
+    //Le damos una funcion al boton de llamada.                                  
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-                if (contactoEnLlamada == null) {
-        if (!pendientes.isEmpty()) {
-            contactoEnLlamada = pendientes.poll();
-            txtAteNombre.setText(contactoEnLlamada.getNombreCompleto());
-            txtAteTelefono.setText(contactoEnLlamada.getTelefono());
-            actualizarListas();
-            iniciarCronometro();
-
+                if (contactoEnLlamada == null) {// Verifica que no haya ya una llamada activa
+        if (!pendientes.isEmpty()) { // Si hay contactos pendientes en la cola...
+            contactoEnLlamada = pendientes.poll(); // Saca el siguiente contacto de la cola (FIFO)
+            txtAteNombre.setText(contactoEnLlamada.getNombreCompleto());// Muestra el nombre del contacto en el campo de texto correspondiente
+            txtAteTelefono.setText(contactoEnLlamada.getTelefono()); // Muestra el teléfono del contacto en el campo de texto correspondiente
+            actualizarListas();// Actualiza las listas visuales de pendientes/atendidos si es necesario
+            iniciarCronometro(); // Inicia el cronómetro para contar la duración de la llamada
+           // Desactiva el botón "Contactar" y "Siguiente" mientras hay llamada
             btnContactar.setEnabled(false);
             btnSiguiente.setEnabled(false);
             jButton3.setEnabled(false); // deshabilitar llamar para evitar múltiples clicks
             jButton4.setEnabled(true); // habilitar colgar
         } else {
+             // Muestra un mensaje si no hay más contactos en la cola
             JOptionPane.showMessageDialog(this, "No hay contactos pendientes para llamar.", "Información", JOptionPane.INFORMATION_MESSAGE);
         }          
     }//GEN-LAST:event_jButton3ActionPerformed
     }
     
-    //hacer
+    //funcion del boton de colgar.
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    if (contactoEnLlamada != null) {
+    if (contactoEnLlamada != null) { // Verifica si hay una llamada activa
+    // Detiene el cronómetro y reinicia el contador de tiempo
         reiniciarCronometro();
 
-        // Agregar a atendidos
+       // Agrega el nombre del contacto atendido a la lista de atendidos 
         lmAtendidos.addElement(contactoEnLlamada.getNombreCompleto());
+           // Refresca visualmente la lista de atendidos en la interfaz
         jListAtendidos.setModel(lmAtendidos);
 
         // Limpiar campos
         txtAteNombre.setText("");
         txtAteTelefono.setText("");
 
+        // Libera la variable para permitir una nueva llamada
         contactoEnLlamada = null;
-
+ // Activa los botones "Contactar" y "Siguiente" solo si aún hay contactos pendientes
         btnContactar.setEnabled(!pendientes.isEmpty());
         btnSiguiente.setEnabled(!pendientes.isEmpty());
-        jButton3.setEnabled(true);  // habilitar llamar
-        jButton4.setEnabled(false); // deshabilitar colgar
+        // Vuelve a activar el botón "Llamar"
+        jButton3.setEnabled(true);  
+       // Desactiva el botón "Colgar" hasta que haya una nueva llamada 
+        jButton4.setEnabled(false); 
     }//GEN-LAST:event_jButton4ActionPerformed
     }
     
