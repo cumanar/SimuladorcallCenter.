@@ -14,6 +14,8 @@ import java.util.StringTokenizer;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
+
+
 /**
  *
  * @author Fabián
@@ -38,6 +40,8 @@ public class FormularioContacto extends javax.swing.JFrame {
     // Clases encargas de manipular las listas
     private DefaultListModel<String> lmPendientes = new DefaultListModel<>();
     private DefaultListModel<String> lmAtendidos = new DefaultListModel<>();
+    
+   
 
     //Constructor de la GUI
     public FormularioContacto() {
@@ -793,8 +797,9 @@ public class FormularioContacto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton3ActionPerformed
+
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -834,6 +839,7 @@ public class FormularioContacto extends javax.swing.JFrame {
             }
         });
     }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAbrir;
