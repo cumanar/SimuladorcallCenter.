@@ -35,19 +35,30 @@ public class FormularioContacto extends javax.swing.JFrame {
     private boolean estadoB = false; // Estado del botón
     private boolean estadoPanel = true; // Estado del panel
     private int selTipo = 0; // Tipo de selección (mostrar cédulas o todo)
+    //Variables par el cornometro.
+    private int segundos = 0;
+   private javax.swing.Timer timer;
+   private javax.swing.JTextField txtTelefono;
+   private javax.swing.JTextField txtNombre;
+   private javax.swing.JList<String> listAtendidos;
+
     // Clases encargas de manipular las listas
     private DefaultListModel<String> lmPendientes = new DefaultListModel<>();
     private DefaultListModel<String> lmAtendidos = new DefaultListModel<>();
+
 
     //Constructor de la GUI
     public FormularioContacto() {
         initComponents();// inicializa componentes 
         archivo = new Archivo();
         libreta = new Libreta();
-
         setLocationRelativeTo(null);
         super.setSize(INITIAL_WEIGHT, INITIAL_HEIGHT);
         super.setTitle(TITLE);
+        listAtendidos.equals(new DefaultListModel());
+
+        
+        
     }
 
     public void limpiar() {
@@ -473,6 +484,11 @@ public class FormularioContacto extends javax.swing.JFrame {
 
         txtAteTelefono.setEditable(false);
         txtAteTelefono.setText("Telefono");
+        txtAteTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAteTelefonoActionPerformed(evt);
+            }
+        });
 
         txtAteNombre.setEditable(false);
         txtAteNombre.setText("Nombre");
@@ -792,6 +808,55 @@ public class FormularioContacto extends javax.swing.JFrame {
         actualizarListas();
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
+  //Parte de hacer 
+    private void jButtonLlamarActionPerformed(java.awt.event.ActionEvent evt) {
+    // Iniciar el cronómetro si no está corriendo
+    if (timer == null || !timer.isRunning()) {
+        timer = new javax.swing.Timer(1000, new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                segundos++;
+
+                // Calcular horas:minutos:segundos
+                int horas = segundos / 3600;
+                int minutos = (segundos % 3600) / 60;
+                int segs = segundos % 60;
+
+                // Mostrar en etiqueta (suponiendo que tu etiqueta se llama lblTiempo)
+                lblTiempo.setText(String.format("%d:%02d:%02d", horas, minutos, segs));
+            }
+        });
+
+        timer.start();
+    }
+}
+
+ // Hacer boton colgar.
+ private void jButtonColgarActionPerformed(java.awt.event.ActionEvent evt) {
+    // Detener el cronómetro si está corriendo
+    if (timer != null && timer.isRunning()) {
+        timer.stop();
+    }
+
+    // Reiniciar variables
+    segundos = 0;
+    lblTiempo.setText("0:00:00");
+
+    // Obtener datos de los campos
+    String telefono = txtTelefono.getText();
+    String nombre = txtNombre.getText();
+
+    // Agregar a lista de atendidos (suponiendo que tienes un JList llamado listAtendidos)
+    String info = telefono + " - " + nombre;
+    DefaultListModel modelo = (DefaultListModel) listAtendidos.getModel();
+    modelo.addElement(info);
+
+    // Limpiar campos
+    txtTelefono.setText("");
+    txtNombre.setText("");
+}
+   
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -803,6 +868,10 @@ public class FormularioContacto extends javax.swing.JFrame {
     private void txtAteNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAteNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAteNombreActionPerformed
+
+    private void txtAteTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAteTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAteTelefonoActionPerformed
     /**
      * @param args the command line arguments
      */
