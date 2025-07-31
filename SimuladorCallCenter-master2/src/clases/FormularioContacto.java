@@ -31,7 +31,7 @@ public class FormularioContacto extends javax.swing.JFrame {
     private boolean estadoB = false; // Estado del botón
     private boolean estadoPanel = true; // Estado del panel
     private int selTipo = 0; // Tipo de selección (mostrar cédulas o todo)
-    
+    //hacer
     private Timer cronometro;
     private int segundos = 0;
     private Contacto contactoEnLlamada = null;
@@ -665,14 +665,14 @@ public class FormularioContacto extends javax.swing.JFrame {
     });
     cronometro.start();
 }
-
+//hacer
 private void actualizarTiempo() {
     int horas = segundos / 3600;
     int minutos = (segundos % 3600) / 60;
     int seg = segundos % 60;
     lblTiempo.setText(String.format("%d:%02d:%02d", horas, minutos, seg));
 }
-
+//hacer
 private void reiniciarCronometro() {
     if (cronometro != null) {
         cronometro.stop();
@@ -848,6 +848,8 @@ private void reiniciarCronometro() {
         }          
     }//GEN-LAST:event_jButton3ActionPerformed
     }
+    
+    //hacer
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
     if (contactoEnLlamada != null) {
         reiniciarCronometro();
@@ -868,6 +870,8 @@ private void reiniciarCronometro() {
         jButton4.setEnabled(false); // deshabilitar colgar
     }//GEN-LAST:event_jButton4ActionPerformed
     }
+    
+    
     private void txtAteNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAteNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAteNombreActionPerformed
