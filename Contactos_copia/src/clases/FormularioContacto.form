@@ -47,8 +47,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="panelContacto" min="-2" pref="328" max="-2" attributes="0"/>
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="panelContacto" min="-2" pref="264" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="panelListaCont" max="32767" attributes="0"/>
@@ -322,7 +322,7 @@
                       <Component id="bBuscar" min="-2" max="-2" attributes="0"/>
                       <Component id="bEliminar" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="textCedula" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -363,7 +363,6 @@
                       <Component id="bLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bBusqueA" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="46" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
