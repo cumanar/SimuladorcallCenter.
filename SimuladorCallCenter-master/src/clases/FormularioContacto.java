@@ -834,7 +834,7 @@ public class FormularioContacto extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAbrir;
     private javax.swing.JButton bBuscar;
