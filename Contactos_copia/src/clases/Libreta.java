@@ -31,7 +31,7 @@ public class Libreta {
             archivo = new Archivo("", true);
         }
         listaContactos = archivo.listarArchivos(); // Obtiene la lista de archivos
-        System.out.println(Arrays.toString(listaContactos));
+        System.out.println("Archivos cargados:" + Arrays.toString(listaContactos));
         libreta = new ArrayList<>();
         
         // Carga cada contacto desde su archivo correspondiente
