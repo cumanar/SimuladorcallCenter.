@@ -7,14 +7,12 @@ package clases;
 
 import archivos.Archivo;
 import java.awt.Color;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 import java.util.StringTokenizer;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
 
 /**
  *
@@ -40,124 +38,6 @@ public class FormularioContacto extends javax.swing.JFrame {
     // Clases encargas de manipular las listas
     private DefaultListModel<String> lmPendientes = new DefaultListModel<>();
     private DefaultListModel<String> lmAtendidos = new DefaultListModel<>();
-    private Contacto contactoActual = null;  // Para guardar el contacto que está en llamada
-    private Timer timer;
-    private int segundosLlamada = 0;
-  
-
-
-    private void actualizarListas(Iterable<Contacto> Atendidos) {
-    lmPendientes.clear();
-    for (Contacto c : pendientes) {
-        lmPendientes.addElement(c.getNombreCompleto());
-    }
-    jListPendientes.setModel(lmPendientes);
-
-    lmAtendidos.clear();
-        for (Contacto c : Atendidos) {
-            lmAtendidos.addElement(c.getNombreCompleto());
-        }
-    jListAtendidos.setModel(lmAtendidos);
-
-    btnContactar.setEnabled(pendientes.isEmpty());
-    btnSiguiente.setEnabled(!pendientes.isEmpty());
-}
-
-private void btnContactarActionPerformed(java.awt.event.ActionEvent evt) {                                             
-    pendientes.clear();
-    lmPendientes.clear();
-    lmAtendidos.clear();
-
-    for (Contacto c : libreta.getLibreta()) {
-        pendientes.add(c);
-        lmPendientes.addElement(c.getNombreCompleto());
-    }
-    jListPendientes.setModel(lmPendientes);
-    jListAtendidos.setModel(lmAtendidos);
-
-    btnContactar.setEnabled(false);
-    btnSiguiente.setEnabled(!pendientes.isEmpty());
-
-    txtAteNombre.setText("Nombre");
-    txtAteTelefono.setText("Telefono");
-    lblTiempo.setText("0:00:00");
-
-    contactoActual = null;
-    segundosLlamada = 0;
-
-    if (timer != null && timer.isRunning()) {
-        timer.stop();
-    }
-}                                            
-
-private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {                                             
-    if (!pendientes.isEmpty()) {
-        contactoActual = pendientes.poll();
-
-        txtAteNombre.setText(contactoActual.getNombreCompleto());
-        txtAteTelefono.setText(contactoActual.getTelefono());
-
-        actualizarListas();
-
-        // Reiniciar tiempo cada vez que cambia el contacto
-        if (timer != null && timer.isRunning()) {
-            timer.stop();
-        }
-        segundosLlamada = 0;
-        lblTiempo.setText("0:00:00");
-    } else {
-        contactoActual = null;
-        txtAteNombre.setText("Nombre");
-        txtAteTelefono.setText("Telefono");
-        lblTiempo.setText("0:00:00");
-        btnSiguiente.setEnabled(false);
-        btnContactar.setEnabled(true);
-        if (timer != null && timer.isRunning()) {
-            timer.stop();
-        }
-    }
-}                                            
-
-private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-    // Botón Llamar: inicia el cronómetro sólo si hay contacto actual
-    if (contactoActual != null) {
-        if (timer == null) {
-            timer = new Timer(1000, e -> {
-                segundosLlamada++;
-                int horas = segundosLlamada / 3600;
-                int minutos = (segundosLlamada % 3600) / 60;
-                int segundos = segundosLlamada % 60;
-                lblTiempo.setText(String.format("%d:%02d:%02d", horas, minutos, segundos));
-            });
-        }
-        timer.start();
-    } else {
-        JOptionPane.showMessageDialog(null, "No hay contacto seleccionado para llamar", "Atención", JOptionPane.WARNING_MESSAGE);
-    }
-}                                        
-
-private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-    // Botón Colgar: detiene el cronómetro, mueve contacto a atendidos y limpia campos
-    if (timer != null && timer.isRunning()) {
-        timer.stop();
-    }
-    segundosLlamada = 0;
-    lblTiempo.setText("0:00:00");
-
-    if (contactoActual != null) {
-        atendidos.add(contactoActual);
-        contactoActual = null;
-
-        txtAteNombre.setText("");
-        txtAteTelefono.setText("");
-        actualizarListas();
-
-        // Opcional: activar botón siguiente si hay pendientes
-        btnSiguiente.setEnabled(!pendientes.isEmpty());
-        btnContactar.setEnabled(pendientes.isEmpty());
-    }
-}
-
 
     //Constructor de la GUI
     public FormularioContacto() {
