@@ -243,7 +243,7 @@ public class FormularioContacto extends javax.swing.JFrame {
                         .addGroup(panelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton3)
                             .addComponent(jButton4))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelListaContLayout = new javax.swing.GroupLayout(panelListaCont);
@@ -261,7 +261,7 @@ public class FormularioContacto extends javax.swing.JFrame {
                 .addComponent(panelControl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelContacto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelContacto.setBorder(new javax.swing.border.MatteBorder(null));
         panelContacto.setPreferredSize(new java.awt.Dimension(450, 312));
 
         bGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botones/add.png"))); // NOI18N
@@ -385,7 +385,7 @@ public class FormularioContacto extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(35, 35, 35)
                         .addComponent(textCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
             .addGroup(panelContactoLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(bBusqueA)
@@ -437,6 +437,8 @@ public class FormularioContacto extends javax.swing.JFrame {
                     .addComponent(bGuardar))
                 .addGap(41, 41, 41))
         );
+
+        jPanel3.setBorder(new javax.swing.border.MatteBorder(null));
 
         bAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botones/folder_edit.png"))); // NOI18N
         bAbrir.setText("Abrir");
@@ -517,6 +519,8 @@ public class FormularioContacto extends javax.swing.JFrame {
             }
         });
 
+        jPanel4.setBorder(new javax.swing.border.MatteBorder(null));
+
         listaContactos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 listaContactosValueChanged(evt);
@@ -548,7 +552,7 @@ public class FormularioContacto extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addGap(50, 50, 50))))
         );
