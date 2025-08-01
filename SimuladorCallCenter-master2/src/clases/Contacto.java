@@ -6,8 +6,6 @@
 package clases;
 
 /**
- *
- * @author Fabián
  */
 /**
  * Clase Contacto que representa un contacto en la libreta de direcciones.
